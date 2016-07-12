@@ -1,0 +1,25 @@
+{
+  "name": "movieProject",
+  "authors": [
+    "yugang <anhao@192.168.1.103>"
+  ],
+  "description": "node+mongoDB",
+  "main": "",
+  "keywords": [
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}

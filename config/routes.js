@@ -24,4 +24,5 @@ module.exports = function(app){
 	app.post('/admin/movie/new',Movie.save)
 	app.get('/admin/list',Movie.list)
 	app.delete('/admin/list',Movie.del)
+	
 }

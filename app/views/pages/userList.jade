@@ -1,0 +1,29 @@
+//-*****************
+//-****电影列表页
+//-***从数据库里取出值
+//-*****************
+
+//-继承layout布局
+extends ../layout
+//-申明主要内容
+block content
+	//-container row 是bootstrap的框架
+	.container
+		.row
+			table.table.table-hover.table-bordered
+				thead
+					tr
+						th 名字
+						th 时间
+						th 查看
+						th 更新
+						th 删除
+				tbody
+					each item in users
+						tr(class="item-id-#{item._id}")
+							td #{item.name}
+							td #{moment(item.meta.updateAt).format('MM/DD/YYYY')}
+							td: a(target="_blank",href="../movie/#{item._id}") 查看
+							td: a(target="_blank",href="../admin/update/#{item._id}") 修改
+							td
+								button.btn.btn-danger.del(type="button",data-id="#{item._id}") 删除

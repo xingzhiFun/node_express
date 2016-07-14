@@ -1,0 +1,24 @@
+//-*****************
+//-****主页
+//-*****************
+
+
+//-继承layout布局
+extends ../layout
+//-申明主要内容
+block content
+	//-container row 是bootstrap的框架
+	.container
+		.row
+			//-遍历电影数组
+			each item in movies
+				//-设置宽度为2 
+				.col-md-2
+					.thumbnail
+						a(href="/movie/#{item._id}")
+							img(src="#{item.poster}",alt="#{item.title}")
+						.caption
+							h3 #{title}
+							a(href="/movie/#{item._id}")
+								p:a.btn.btn-primary(href="/movie/#{item._id}",role="button")
+									观看预告片

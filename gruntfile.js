@@ -27,7 +27,9 @@ module.exports = function(grunt){
 					args:[],
 					ignoredFiles:['README.md','node_moudles/**','.DS_Store'],
 					watchedExtensions:['js'],
-					wacthedFolders:['app','config'],
+					//暂无app,config文件夹，监听不到，先改成默认文件夹(当前文件夹)，后续需要再改
+					//wacthedFolders:['app','config'],
+					wacthedFolders:['./'],
 					debug:true,
 					delayTime:1,
 					env:{

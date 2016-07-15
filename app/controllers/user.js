@@ -1,5 +1,19 @@
 var User=require('../models/user');
 
+//showSignin
+exports.showSignin=function(req,res){
+	res.render('signin',{
+		title:'login'
+	})
+}
+
+//showSignup
+exports.showSignup=function(req,res){
+	res.render('signup',{
+		title:'logout'
+	})
+}
+
 //signup
 exports.signup=function(req,res){
 	var _user=req.body.user;
@@ -11,7 +25,7 @@ exports.signup=function(req,res){
 			console.log(err);
 		}
 		if(user){
-			return res.redirect('/');
+			return res.redirect('/signin');
 		}else{
 			var user=new User(_user);
 			user.save(function(err,user){
@@ -19,7 +33,7 @@ exports.signup=function(req,res){
 					console.log(err);
 				}
 
-				res.redirect('/admin/userList');
+				res.redirect('/');
 				console.log(user);
 			})
 		}
@@ -37,7 +51,7 @@ exports.signin=function(req,res){
 			console.log(err);
 		}
 		if(!user){
-			return res.redirect('/');
+			return res.redirect('/signin');
 		}
 		user.comparePassword(password,function(err,isMatch){
 			if(err){
@@ -46,11 +60,11 @@ exports.signin=function(req,res){
 			if(isMatch){
 				//获取登录状态
 				req.session.user = user;
-
 				return res.redirect('/');
 			}
 			else{
 				console.log('Password is not matched');
+				return res.redirect('/signin');
 			}
 		})
 	})
@@ -70,8 +84,27 @@ exports.list=function(req,res){
 			console.log(err);
 		}
 		res.render('userList',{
-			title:'imooc userProject list',
+			title:'userProject list',
 			users:users
 		})
 	})
 }
+
+//midware for user
+exports.signinRequired=function(req,res){
+	var user=req.session.user;
+	if(!user){
+		return res.redirect('/signin');
+	}
+	next()
+}
+
+exports.adminRequired=function(req,res){
+	var user=req.session.user;
+	if(user.role <= 10){
+		return res.redirect('/signin');
+	}
+	next()
+}
+
+

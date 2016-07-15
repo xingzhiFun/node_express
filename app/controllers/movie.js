@@ -6,7 +6,7 @@ exports.detail=function(req,res){
 	var id=req.params.id;
 	Movie.findById(id,function(err,movie){
 		res.render('detail',{
-			title:'imooc'+movie.title,
+			title:movie.title,
 			movie:movie
 		})
 	})
@@ -15,7 +15,7 @@ exports.detail=function(req,res){
 //admin page
 exports.new=function(req,res){
 	res.render('admin',{
-		title:'imooc movieProject admin',
+		title:'movieProject admin',
 		movie:{
 			title:'',
 			doctor:'',
@@ -92,7 +92,7 @@ exports.list=function(req,res){
 			console.log(err);
 		}
 		res.render('list',{
-			title:'imooc movieProject list',
+			title:'movieProject list',
 			movies:movies
 		})
 	})

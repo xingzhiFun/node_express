@@ -16,7 +16,9 @@ module.exports = function(app){
 	app.post('/user/signup',User.signup)
 	app.post('/user/signin',User.signin)
 	app.get('/logout',User.logout)
-	app.get('/admin/userList',User.list)
+	app.get('/signin',User.showSignin)
+	app.get('/signup',User.showSignup)
+	app.get('/admin/userList',User.signinRequired,User.adminRequired,User.list)
 
 	app.get('/movie/:id',Movie.detail)
 	app.get('/admin/movie',Movie.new)
@@ -24,5 +26,5 @@ module.exports = function(app){
 	app.post('/admin/movie/new',Movie.save)
 	app.get('/admin/list',Movie.list)
 	app.delete('/admin/list',Movie.del)
-	
+
 }
